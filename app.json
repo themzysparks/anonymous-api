@@ -1,0 +1,20 @@
+{
+  "name": "Anonymous Message App",
+  "description": "An Express app with PostgreSQL for anonymous messaging.",
+  "repository": "https://github.com/your-username/your-repo",
+  "env": {
+    "DATABASE_URL": {
+      "description": "External PostgreSQL connection URL (Render)",
+      "required": true
+    },
+    "PORT": {
+      "description": "Port to run the app",
+      "value": "5000"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
