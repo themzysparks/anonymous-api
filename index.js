@@ -66,6 +66,20 @@ app.post('/messages', async (req, res) => {
     }
 });
 
+// Delete a message
+app.delete('/messages/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM messages WHERE id = $1 RETURNING *', [id]);
+        if (result.rowCount === 0) return res.status(404).json({ error: "Message not found" });
+
+        res.json({ success: true, message: "Message deleted" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server Error" });
+    }
+});
+
 
 // Start the server
 app.listen(PORT, () => {
